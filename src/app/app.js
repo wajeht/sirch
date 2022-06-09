@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(path.join(process.cwd(), "src", "public")))); // prettier-ignore
 
 app.use("/api", apiRoutes);
-app.use("/", AppController.getHomePage);
-app.use("*", (req, res) => res.json({ url: req.originalUrl }));
+app.use("*", AppController.getHomePage);
+// app.use("*", (req, res) => res.json({ url: req.originalUrl }));
 
 // prettier-ignore
 app.listen(PORT, () => console.log(`App is running at http://localhost:${PORT}`));

@@ -1,8 +1,11 @@
 import list from "./commands.list.js";
 
 /**
+ * !NOTE: *** REFACTOR THIS! ***
+ *
  * It takes a query string from the user, checks if it's a direct command or a
  * search command, and then redirects the user to the appropriate URL
+ *
  * @param req - The request object.
  * @param res - The response object.
  * @returns a JSON object with the following properties:
@@ -13,8 +16,12 @@ export async function getCommands(req, res) {
   // throw error if search does not contain q as query param
   // for example:	`api/command/?q=`
   if (query.length != 1 && !query.includes("q")) {
-    return res.json({
+    return res.status(404).json({
       status: "error",
+      statusCode: res.statusCode,
+      query: req.query,
+      based_url: req.baseUrl,
+      request_url: req.originalUrl,
       message: "You must use the proper format!",
       example: {
         "direct-commands": "/api/commands/?q=!myprofile",
@@ -32,6 +39,10 @@ export async function getCommands(req, res) {
   if (req.query.q.split(" ").length === 1) {
     // direct command
     if (req.query.q.startsWith("!")) {
+      // list available commands
+      if (req.query.q == "!cmds") return res.status(200).json(list);
+
+      // direct commands
       url = list["direct-commands"][req.query.q];
       if (url) return res.redirect(url);
     }
@@ -67,21 +78,21 @@ export async function getCommands(req, res) {
 
   return res.redirect(url);
 
-  //    // api response
-  //     return res.status(200).json({
-  //       status: "success!",
-  //       statusCode: res.statusCode,
-  //       message: "The resource was returned successfully!",
-  //       query: req.query,
-  //       based_url: req.baseUrl,
-  //       request_url: req.originalUrl,
-  //       data: url,
-  //     });
+  // //   api response
+  //   return res.status(200).json({
+  //     status: "success!",
+  //     statusCode: res.statusCode,
+  //     query: req.query,
+  //     based_url: req.baseUrl,
+  //     request_url: req.originalUrl,
+  //     message: "The resource was returned successfully!",
+  //     data: url,
+  //   });
 
-  // the code below are for proxing
+  //   // the code below are for proxing
   //   const protocol = req.protocol;
   //   const host = req.get("host");
-  //   const proxy = `${protocol}://${host}/api/proxy?url=${url}`;
-  //   // // http://localhost:4000/api/proxy?url=https://duckduckgo.com/?q=dfasdf&ia=web
+  //   const proxy = `${protocol}://${host}/proxy?url=${url}`;
+  //   // // http://localhost:4000/proxy?url=https://duckduckgo.com/?q=dfasdf&ia=web
   //   res.redirect(`/?load=${proxy}`);
 }
