@@ -40,7 +40,16 @@ export async function getCommands(req, res) {
     // direct command
     if (req.query.q.startsWith("!")) {
       // list available commands
-      if (req.query.q == "!cmds") return res.status(200).json(list);
+      if (req.query.q == "!cmds")
+        return res.status(200).json({
+          status: "success!",
+          statusCode: res.statusCode,
+          query: req.query,
+          based_url: req.baseUrl,
+          request_url: req.originalUrl,
+          message: "The resource was returned successfully!",
+          data: list,
+        });
 
       // direct commands
       url = list["direct-commands"][req.query.q];
@@ -76,18 +85,18 @@ export async function getCommands(req, res) {
   url = list["search-commands"][bang] + keywords;
   //   url = list["search-commands"][bang];
 
-  return res.redirect(url);
+  //   return res.redirect(url);
 
   // //   api response
-  //   return res.status(200).json({
-  //     status: "success!",
-  //     statusCode: res.statusCode,
-  //     query: req.query,
-  //     based_url: req.baseUrl,
-  //     request_url: req.originalUrl,
-  //     message: "The resource was returned successfully!",
-  //     data: url,
-  //   });
+  return res.status(200).json({
+    status: "success!",
+    statusCode: res.statusCode,
+    query: req.query,
+    based_url: req.baseUrl,
+    request_url: req.originalUrl,
+    message: "The resource was returned successfully!",
+    data: url,
+  });
 
   //   // the code below are for proxing
   //   const protocol = req.protocol;

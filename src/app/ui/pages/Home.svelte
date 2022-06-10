@@ -1,9 +1,10 @@
 <script>
-  console.log(this);
+  console.log("home");
 </script>
 
-<main>
+<div id="home">
   <h1>home</h1>
-</main>
+</div>
 
-<style></style>
+<style>
+</style>

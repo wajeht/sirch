@@ -1,9 +1,9 @@
 <script>
-  console.log(this);
+  console.log("not found");
 </script>
 
-<main>
+<div id="not-found">
   <h1>not-found</h1>
-</main>
+</div>
 
 <style></style>

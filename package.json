@@ -11,7 +11,7 @@
     "dev:api": "nodemon ./src/app/app.js",
     "build:ui": "vite build",
     "build:api": "echo does not need to build!",
-	"rmds": "find . -name '.DS_Store' -delete"
+    "rmds": "find . -name '.DS_Store' -delete"
   },
   "keywords": [
     "svelte"
@@ -26,12 +26,14 @@
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.47",
     "axios": "^0.27.2",
     "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "helmet": "^5.1.0",
     "mime": "^3.0.0",
     "svelte": "^3.48.0",
     "svelte-spa-router": "^3.2.0",
+    "tinro": "^0.6.12",
     "vite": "^2.9.9"
   }
 }
