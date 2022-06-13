@@ -1,9 +1,14 @@
 import { defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [vue()],
   root: "./src/app/ui",
+  resolve: {
+    alias: {
+      "@": "./src/app/ui",
+    },
+  },
   build: {
     outDir: "../../public",
     emptyOutDir: false,
