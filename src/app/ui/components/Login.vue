@@ -1,6 +1,6 @@
 <template>
-  <div class="input-group position-absolute top-50 start-50 translate-middle">
-    <form @submit.prevent="login()" class="col-6 mx-auto">
+  <div class="input-group position-absolute top-50 left-50">
+    <form @submit.prevent="login()" class="mx-auto shadow-sm">
       <div class="input-group">
         <span class="input-group-text">
           <i class="bi bi-lock" />

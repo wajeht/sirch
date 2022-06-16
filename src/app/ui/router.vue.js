@@ -7,12 +7,17 @@ import NotFound from "./pages/NotFound.vue";
 
 const routes = [
   {
+    path: "/",
+    redirect: (to) => {
+      return { path: "/dashboard" };
+    },
+  },
+  {
     path: "/login",
     name: "Login",
     component: Login,
     meta: {
-      title: "Login",
-      layout: "regular",
+      layout: "RegularLayout",
     },
   },
   {
@@ -20,8 +25,7 @@ const routes = [
     name: "404",
     component: NotFound,
     meta: {
-      title: "404",
-      layout: "regular",
+      layout: "RegularLayout",
     },
   },
   {
@@ -29,8 +33,7 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
     meta: {
-      title: "Dashboard",
-      layout: "admin",
+      layout: "AdminLayout",
     },
   },
   {
@@ -38,8 +41,7 @@ const routes = [
     name: "Proxy",
     component: Proxy,
     meta: {
-      title: "Proxy",
-      layout: "admin",
+      layout: "AdminLayout",
     },
   },
 ];
@@ -50,7 +52,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
+  document.title = to.name;
   next();
 });
 

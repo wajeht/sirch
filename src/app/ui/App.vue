@@ -21,7 +21,7 @@
         if (to.meta.layout !== undefined) {
           this.layout = to.meta.layout;
         } else {
-          this.layout = "admin";
+          this.layout = "AdminLayout";
         }
       },
     },
