@@ -13,6 +13,12 @@ const routes = [
     },
   },
   {
+    path: "/logout",
+    redirect: (to) => {
+      return { path: "/login" };
+    },
+  },
+  {
     path: "/login",
     name: "Login",
     component: Login,

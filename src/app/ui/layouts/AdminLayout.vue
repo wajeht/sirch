@@ -1,7 +1,9 @@
 <template>
   <div id="admin">
     <AdminNavbar />
-    <router-view />
+    <div class="container-fluid" style="background-color: red">
+      <router-view />
+    </div>
   </div>
 </template>
 
